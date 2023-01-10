@@ -22,3 +22,37 @@ addBookToLibrary(theHobbit);
 addBookToLibrary(lotr1);
 addBookToLibrary(lotr2);
 addBookToLibrary(lotr3);
+
+function addBookDiv(c) {
+  const main = document.querySelector('main');
+  const newDiv = document.createElement('div');
+  const newTitle = document.createElement('h3');
+  const newAuthor = document.createElement('p');
+  const newPages = document.createElement('p');
+  const newRead = document.createElement('p');
+  const titleText = `${myLibrary[c].title}`
+  const authorText = `${myLibrary[c].author}`
+  const pagesText = `${myLibrary[c].pages}`
+  const readText = `${myLibrary[c].read}`
+
+  newTitle.classList.add("title");
+  newAuthor.classList.add("author");
+  newPages.classList.add("pages");
+  newRead.classList.add("read");
+  newDiv.classList.add("card");
+  newTitle.textContent = titleText
+  newAuthor.textContent = authorText
+  newPages.textContent = pagesText
+  newRead.textContent = readText
+  newDiv.appendChild(newTitle);
+  newDiv.appendChild(newAuthor);
+  newDiv.appendChild(newPages);
+  newDiv.appendChild(newRead);
+  main.appendChild(newDiv);
+}
+
+
+
+for (let i = 0; i < myLibrary.length; i += 1) {
+  addBookDiv(i);
+}
