@@ -5,24 +5,45 @@
 <!--[if gt IE 8]>      <html class="no-js"> <!<![endif]-->
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+      <p class="browsehappy">
+        You are using an <strong>outdated</strong> browser. Please
+        <a href="#">upgrade your browser</a> to improve your experience.
+      </p>
     <![endif]-->
     <header>
       <h1>Books</h1>
-      <button>+</button>
+      <button type="button" id="addBook">+</button>
     </header>
     <main class="cards">
-
+      <div id="addBookForm">
+        <div id="formPopup">
+          <form action="" method="post" class="formContainer">
+            <h2>Add a Book</h2>
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="" required />
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="" required />
+            <label for="pages"># of Pages:</label>
+            <input type="number" id="pages" name="" required />
+            <select id="read" name="">
+              <option value="read">Read</option>
+              <option value="want">Want to Read</option>
+            </select>
+            <button type="submit" class="submitBtn">Submit</button>
+            <button type="button" class="cancelBtn">Close</button>
+          </form>
+        </div>
+      </div>
     </main>
-    <script src="script.js" async defer></script>
   </body>
+  <script src="script.js" async defer></script>
 </html>

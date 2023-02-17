@@ -7,7 +7,37 @@ header {
   text-align: center;
 }
 
-button {
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+#addBookForm {
+  display: block;
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+
+#formPopup {
+  display: none;
+  position: fixed;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%, 5%);
+  border: 3px solid black;
+  z-index: 9;
+}
+
+.formContainer {
+  max-width: 300px;
+  padding: 20px;
+  background-color: #fff;
+}
+
+#addBook {
+  background-color: lightgreen;
   height: 40px;
   width: 40px;
   border: none;

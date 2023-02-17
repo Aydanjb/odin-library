@@ -1,4 +1,13 @@
-const myLibrary = [];
+const main = document.querySelector("main");
+const addBookButton = document.getElementById("addBook");
+const formPopup = document.getElementById("formPopup");
+const form = document.querySelector(".formContainer");
+const formTitle = document.getElementById("title");
+const formAuthor = document.getElementById("author");
+const formPages = document.getElementById("pages");
+const formRead = document.getElementById("read");
+const closeFormBtn = document.querySelector(".cancelBtn");
+const stack = [];
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -7,52 +16,52 @@ function Book(title, author, pages, read) {
   this.read = read;
 }
 
-Book.prototype.info = () => `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`
+Book.prototype.info = () =>
+  `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
 
-function addBookToLibrary(book) {
-  myLibrary.push(book)
+function addCard(item) {
+  const card = document.createElement("div");
+  const title = document.createElement("h3");
+  const author = document.createElement("p");
+  const pages = document.createElement("p");
+  const read = document.createElement("p");
+
+  card.classList.add("card");
+  title.textContent = `${item.title}`;
+  author.textContent = `${item.author}`;
+  pages.textContent = `${item.pages}`;
+  read.textContent = `${item.read}`;
+
+  main.appendChild(card);
+  card.appendChild(title);
+  card.appendChild(author);
+  card.appendChild(pages);
+  card.appendChild(read);
 }
 
-const theHobbit = new Book("The Hobbit", "J.R.R Tolkien", "295", "Read");
-const lotr1 = new Book("The Fellowship of the Ring", "J.R.R Tolkien", "527", "Read");
-const lotr2 = new Book("The Two Towers", "J.R.R Tolkien", "448", "Not read")
-const lotr3 = new Book("Return of the King", "J.R.R Tolkien", "432", "Not read");
+form.onsubmit = (e) => {
+  e.preventDefault();
+  const newBook = new Book(
+    formTitle.value,
+    formAuthor.value,
+    formPages.value,
+    formRead.value
+  );
+  stack.push(newBook);
+  addCard(stack.pop());
+};
 
-addBookToLibrary(theHobbit);
-addBookToLibrary(lotr1);
-addBookToLibrary(lotr2);
-addBookToLibrary(lotr3);
-
-function addBookDiv(c) {
-  const main = document.querySelector('main');
-  const newDiv = document.createElement('div');
-  const newTitle = document.createElement('h3');
-  const newAuthor = document.createElement('p');
-  const newPages = document.createElement('p');
-  const newRead = document.createElement('p');
-  const titleText = `${myLibrary[c].title}`
-  const authorText = `${myLibrary[c].author}`
-  const pagesText = `${myLibrary[c].pages}`
-  const readText = `${myLibrary[c].read}`
-
-  newTitle.classList.add("title");
-  newAuthor.classList.add("author");
-  newPages.classList.add("pages");
-  newRead.classList.add("read");
-  newDiv.classList.add("card");
-  newTitle.textContent = titleText
-  newAuthor.textContent = authorText
-  newPages.textContent = pagesText
-  newRead.textContent = readText
-  newDiv.appendChild(newTitle);
-  newDiv.appendChild(newAuthor);
-  newDiv.appendChild(newPages);
-  newDiv.appendChild(newRead);
-  main.appendChild(newDiv);
+function openForm() {
+  formPopup.style.display = "block";
 }
 
-
-
-for (let i = 0; i < myLibrary.length; i += 1) {
-  addBookDiv(i);
+function closeForm() {
+  formPopup.style.display = "none";
 }
+
+addBookButton.addEventListener("click", () => {
+  openForm();
+});
+closeFormBtn.addEventListener("click", () => {
+  closeForm();
+});
