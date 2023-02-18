@@ -26,7 +26,12 @@
     <main class="cards">
       <div id="addBookForm">
         <div id="formPopup">
-          <form action="" method="post" class="formContainer">
+          <form
+            action=""
+            autocomplete="off"
+            method="post"
+            class="formContainer"
+          >
             <h2>Add a Book</h2>
             <label for="title">Title:</label>
             <input type="text" id="title" name="" required />
@@ -34,6 +39,7 @@
             <input type="text" id="author" name="" required />
             <label for="pages"># of Pages:</label>
             <input type="number" id="pages" name="" required />
+            <label for="read">Status:</label>
             <select id="read" name="">
               <option value="read">Read</option>
               <option value="want">Want to Read</option>

@@ -19,6 +19,20 @@ function Book(title, author, pages, read) {
 Book.prototype.info = () =>
   `${this.title} by ${this.author}, ${this.pages} pages, ${this.read}`;
 
+function addRemoveBtn(c) {
+  const removeBtn = document.createElement("button");
+  removeBtn.classList.add("removeBtn");
+  removeBtn.textContent = "X";
+  c.appendChild(removeBtn);
+}
+
+function addStatusBtn(c) {
+  const statusBtn = document.createElement("button");
+  statusBtn.classList.add("statusBtn");
+  statusBtn.textContent = "Toggle Read";
+  c.appendChild(statusBtn);
+}
+
 function addCard(item) {
   const card = document.createElement("div");
   const title = document.createElement("h3");
@@ -37,6 +51,28 @@ function addCard(item) {
   card.appendChild(author);
   card.appendChild(pages);
   card.appendChild(read);
+  addRemoveBtn(card);
+  const removeBtn = document.querySelector(".removeBtn");
+  removeBtn.addEventListener("click", () => {
+    card.remove();
+  });
+  addStatusBtn(card);
+  const statusBtn = document.querySelector(".statusBtn");
+  statusBtn.addEventListener("click", () => {
+    if (read.textContent === "read") {
+      read.textContent = "Want to Read";
+    } else {
+      read.textContent = "read";
+    }
+  });
+}
+
+function openForm() {
+  formPopup.style.display = "block";
+}
+
+function closeForm() {
+  formPopup.style.display = "none";
 }
 
 form.onsubmit = (e) => {
@@ -49,15 +85,9 @@ form.onsubmit = (e) => {
   );
   stack.push(newBook);
   addCard(stack.pop());
+  form.reset();
+  closeForm();
 };
-
-function openForm() {
-  formPopup.style.display = "block";
-}
-
-function closeForm() {
-  formPopup.style.display = "none";
-}
 
 addBookButton.addEventListener("click", () => {
   openForm();
